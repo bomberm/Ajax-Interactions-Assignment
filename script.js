@@ -1,6 +1,7 @@
 var weatherKey = "5525df30990c3da458de954d0d3864eb";
 
 document.addEventListener("DOMContentLoaded", weatherButton);
+document.addEventListener("DOMContentLoaded", jsonButton);
 
 function weatherButton(){
   document.getElementById("weatherSubmit").addEventListener("click", function(event){
@@ -40,3 +41,24 @@ function weatherButton(){
 	
 	});
   }
+  
+  function jsonButton(){
+  document.getElementById("postSubmit").addEventListener("click", function(event){
+	event.preventDefault();
+	var parrot = new XMLHttpRequest();
+	var squawk = document.getElementById("postInput").value;
+	parrot.open("POST", "http://httpbin.org/post", true);
+	parrot.setRequestHeader('Content-Type', 'application/json');
+	parrot.send(squawk);
+	parrot.addEventListener("load", function(){
+	  if(parrot.status >=200 && parrot.status < 400){
+		  var info= JSON.parse(parrot.responseText);
+		  document.getElementById("postResponse").textContent =info.data;
+		  }
+		else{
+		  console.log("Error: " + query.statusText);
+		  }
+		});
+	});
+  }
+	
