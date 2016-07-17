@@ -1,0 +1,1 @@
+var weatherKey = 5525df30990c3da458de954d0d3864eb;
