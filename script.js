@@ -16,7 +16,7 @@ function weatherButton(){
 	  query.addEventListener("load", function(){
 	    if(query.status >=200 && query.status < 400){
 		  var info= JSON.parse(query.responseText);
-		  console.log(info);
+		  document.getElementById("weatherResult").textContent ="Current Weather: "+info.weather[0].description;
 		  }
 		else{
 		  console.log("Error: " + query.statusText);
@@ -30,7 +30,7 @@ function weatherButton(){
 	query.addEventListener("load", function(){
 	    if(query.status >=200 && query.status < 400){
 		  var info= JSON.parse(query.responseText);
-		  console.log(info);
+		  document.getElementById("weatherResult").textContent ="Current Weather: "+info.weather[0].description;
 		  }
 		else{
 		  console.log("Error: " + query.statusText);
@@ -38,12 +38,5 @@ function weatherButton(){
 		});
 	}
 	
-	if(query.status >=200 && query.status < 400){
-	var display = document.createTextNode(JSON.parse(query.responseText));
-	document.getElementById("weatherResult").appendChild(display);
-	}
-	else{
-	var display = document.createTextNode("Error: "+ query.statusText);
-	}
 	});
   }
